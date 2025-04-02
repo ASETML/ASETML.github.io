@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ma Liste de Courses</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2rem;
+      }
+      input {
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+      }
+      button {
+        padding: 0.5rem;
+      }
+      li {
+        margin: 0.5rem 0;
+      }
+      .item {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+      }
+	  .del {
+	  cursor: pointer;
+	  }
+    </style>
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Ma Liste de Courses</h1>
+      <form @submit.prevent="addToList">
+        <label for="input">Ajouter un objet à la liste</label>
+        <input id="input" name="input" type="text" v-model="item" />
+        <input type="submit" value="Ajouter" />
+      </form>
+      <grocery-item
+        v-for="(item, index) in items"
+        :key="index"
+        :item="item"
+        :index="index"
+        @remove-item="removeItem"
+      ></grocery-item>
+    </div>
+    <!-- Script principal -->
+    <script src="./main.js"></script>
+
+    <!-- Composant GroceryItem -->
+    <script src="./components/GroceryItem.js"></script>
+
+    <!-- Mount App -->
+    <script>
+      const mountedApp = app.mount("#app");
+    </script>
+  </body>
+</html>
