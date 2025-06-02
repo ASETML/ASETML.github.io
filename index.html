@@ -2,63 +2,51 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title>Ma Liste de Courses</title>
+    <title>Jeu du pendu</title>
     <style>
       body {
         font-family: Arial, sans-serif;
         margin: 2rem;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		background-color: #e0fdff;
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    justify-content: center;
+		    background-color: #e0fdff;
       }
       input {
         padding: 0.5rem;
         margin-right: 0.5rem;
-		margin-top: 0.5rem; 
+		    margin-top: 0.5rem; 
       }
-      button {
-        padding: 0.5rem;
+      .word {
+        font-size: larger;
+        letter-spacing: 0.3em;
       }
-      li {
-        margin: 0.5rem 0;
-      }
-      .item {
+      .letters {
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
       }
-	  .del {
-	  cursor: pointer;
-	  }
     </style>
     <!-- Vue 3 CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
     <div id="app">
-      <h1>Ma Liste de Courses</h1>
-      <form @submit.prevent="addToList">
-        <label for="input">Ajouter un objet à la liste</label>
-		<br>
-        <input id="input" name="input" type="text" v-model="item" />
-        <input type="submit" value="Ajouter" />
-      </form>
-      <grocery-item
-        v-for="(item, index) in items"
-        :key="index"
-        :item="item"
-        :index="index"
-        @remove-item="removeItem"
-      ></grocery-item>
+      <h1>Jeu du pendu</h1>
+      <button @click="startGame">Nouvelle partie</button>
+      <div class="gameZone">
+        <form @submit.prevent="guessLetter">
+          <input type="text" pattern="[A-Za-z\-\s]" v-model="letter">
+          <input type="submit" value="guess">
+        </form>
+        <p class="word">{{ guessedWord }}</p>
+        <div class="letters">
+          <p v-for="l in guessedLetters" :key="l">{{ l }}</p>
+        </div>
+      </div>
     </div>
     <!-- Script principal -->
     <script src="./main.js"></script>
-
-    <!-- Composant GroceryItem -->
-    <script src="./components/GroceryItem.js"></script>
 
     <!-- Mount App -->
     <script>
