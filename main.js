@@ -11,6 +11,14 @@ const app = Vue.createApp({
       sampleWords: ["Scrum Team", "Daily Scrum", "Multi-Application User Interface", "Javascript", "dotnet maui", "Captain Impero", "InnoWeeks"]
     };
   },
+  computed: {
+    canGuess() {
+      if (victory) return false
+      if (defeat) return false
+
+      return true
+    }
+  },
   methods: {
     startGame() {
       this.guessedWord = ""
@@ -26,7 +34,6 @@ const app = Vue.createApp({
       min = 0;
       max = this.sampleWords.length;
       this.word = this.sampleWords[Math.floor(Math.random() * (max - min + 1)) + min].toUpperCase();
-      console.log(this.word)
     },
     fillWord() {
       for (let i = 0; i < this.word.length; i++) {

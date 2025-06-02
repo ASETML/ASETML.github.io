@@ -35,13 +35,13 @@
       <h1>Jeu du pendu</h1>
       <button @click="startGame">Nouvelle partie</button>
       <div class="gameZone">
-        <form @submit.prevent="guessLetter">
+        <form @submit.prevent="guessLetter" v-if="!victory && !defeat">
           <input type="text" pattern="[A-Za-z\-\s]" v-model="letter">
           <input type="submit" value="guess">
         </form>
         <p class="word">{{ guessedWord }}</p>
         <div class="letters">
-          <p v-for="l in guessedLetters" :key="l">{{ l }}</p>
+          <p v-for="le in guessedLetters" :key="le">{{ le }}</p>
         </div>
         <pendu :step="mistakes"></pendu>
         <p class="result" v-if="victory">🎇🎆🎉 You WIN 🎉🎆🎇</p>
