@@ -17,14 +17,18 @@ const app = Vue.createApp({
     },
     fillWord() {
       for (let i = 0; i < this.word.length; i++) {
-        this.guessedWord += "_"
+        if (this.word[i] === " ") {
+          this.guessedWord += " "
+        }
+        else {
+          this.guessedWord += "_"
+        }
       }
     },
     guessLetter() {
       if (this.letter.match(/[A-Za-z\-\s]/) && !this.guessedLetters.includes(this.letter)) {
         this.guessedLetters.push(this.letter)
-        
-        console.log(this.guessedLetters)
+
         this.guessWord(this.letter)
         this.letter = "";
       }
@@ -46,13 +50,19 @@ const app = Vue.createApp({
             
           this.guessedWord = firstPart + letter + lastPart; 
         }
-        
-        console.log(this.guessedWord)
-
       }
       else {
         this.mistakes++
-        console.log(this.mistakes)
+      }
+
+      this.checkIfWordGuessed()
+    },
+    checkIfWordGuessed() {
+      if (this.guessedWord.includes("_")) {
+        console.log("Not Guessed")
+      }
+      else {
+        console.log("Guessed ! 🎆🎆🎆🎇🎇")
       }
     }
   },
