@@ -3,9 +3,10 @@ const app = Vue.createApp({
     return {
       letter: "",
       guessedLetters: [],
-      word: "dotnet maui",
+      word: "",
       mistakes: 0,
       guessedWord: "",
+      sampleWords: ["Scrum Team", "Daily Scrum", "Multi-Application User Interface", "Javascript", "dotnet maui", "Captain Impero", "InnoWeeks"]
     };
   },
   methods: {
@@ -13,7 +14,14 @@ const app = Vue.createApp({
       this.guessedWord = ""
       this.guessedLetters = []
       this.mistakes = 0
+      this.selectRandomWord()
       this.fillWord()
+    },
+    selectRandomWord() {
+      min = 0;
+      max = this.sampleWords.length;
+      this.word = this.sampleWords[Math.floor(Math.random() * (max - min + 1)) + min].toUpperCase();
+      console.log(this.word)
     },
     fillWord() {
       for (let i = 0; i < this.word.length; i++) {
@@ -26,10 +34,10 @@ const app = Vue.createApp({
       }
     },
     guessLetter() {
-      if (this.letter.match(/[A-Za-z\-\s]/) && !this.guessedLetters.includes(this.letter)) {
-        this.guessedLetters.push(this.letter)
+      if (this.letter.match(/[A-Za-z\-\s]/) && !this.guessedLetters.includes(this.letter.toUpperCase())) {
+        this.guessedLetters.push(this.letter.toUpperCase())
 
-        this.guessWord(this.letter)
+        this.guessWord(this.letter.toUpperCase())
         this.letter = "";
       }
     },
