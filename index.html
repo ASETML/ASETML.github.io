@@ -43,10 +43,17 @@
         <div class="letters">
           <p v-for="l in guessedLetters" :key="l">{{ l }}</p>
         </div>
+        <pendu :step="mistakes"></pendu>
+        <p class="result" v-if="victory">🎇🎆🎉 You WIN 🎉🎆🎇</p>
+        <p class="result" v-if="defeat">😢 You LOSE 😢</p>
       </div>
     </div>
+
     <!-- Script principal -->
     <script src="./main.js"></script>
+
+    <!-- Composant pendu -->
+    <script src="./components/pendu.js"></script>
 
     <!-- Mount App -->
     <script>

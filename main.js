@@ -1,6 +1,8 @@
 const app = Vue.createApp({
   data() {
     return {
+      victory: false,
+      defeat: false,
       letter: "",
       guessedLetters: [],
       word: "",
@@ -14,10 +16,13 @@ const app = Vue.createApp({
       this.guessedWord = ""
       this.guessedLetters = []
       this.mistakes = 0
+      this.defeat = false
+      this.victory = false
       this.selectRandomWord()
       this.fillWord()
     },
     selectRandomWord() {
+      //TODO: Let user select a custom word
       min = 0;
       max = this.sampleWords.length;
       this.word = this.sampleWords[Math.floor(Math.random() * (max - min + 1)) + min].toUpperCase();
@@ -67,10 +72,15 @@ const app = Vue.createApp({
     },
     checkIfWordGuessed() {
       if (this.guessedWord.includes("_")) {
-        console.log("Not Guessed")
+        this.checkIfWordGameOver()
       }
       else {
-        console.log("Guessed ! 🎆🎆🎆🎇🎇")
+        this.victory = true
+      }
+    },
+    checkIfWordGameOver() {
+      if (this.mistakes === 7) {
+        this.defeat = true
       }
     }
   },
