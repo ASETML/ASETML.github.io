@@ -40,6 +40,9 @@ const app = Vue.createApp({
         if (this.word[i] === " ") {
           this.guessedWord += " "
         }
+        if (this.word[i] === "-") {
+          this.guessedWord += "-"
+        }
         else {
           this.guessedWord += "_"
         }
