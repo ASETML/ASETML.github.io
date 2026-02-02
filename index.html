@@ -1,63 +1,75 @@
 <!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Jeu du pendu</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 2rem;
-		    display: flex;
-		    flex-direction: column;
-		    align-items: center;
-		    justify-content: center;
-		    background-color: #e0fdff;
-      }
-      input {
-        padding: 0.5rem;
-        margin-right: 0.5rem;
-		    margin-top: 0.5rem; 
-      }
-      .word {
-        font-size: larger;
-        letter-spacing: 0.3em;
-      }
-      .letters {
-        display: flex;
-        flex-direction: row;
-      }
-    </style>
-    <!-- Vue 3 CDN -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  </head>
-  <body>
-    <div id="app">
-      <h1>Jeu du pendu</h1>
-      <button @click="startGame">Nouvelle partie</button>
-      <div class="gameZone">
-        <form @submit.prevent="guessLetter" v-if="!victory && !defeat">
-          <input type="text" pattern="[A-Za-z\-\s]" v-model="letter">
-          <input type="submit" value="guess">
-        </form>
-        <p class="word">{{ guessedWord }}</p>
-        <div class="letters">
-          <p v-for="le in guessedLetters" :key="le">{{ le }}</p>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>ASETML Portfolio</title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="ptl" class="section">
+            <div class="content">
+                <h1>Plot Those Lines</h1>
+                <p>Une application pour afficher les graphiques du PIB
+                    <a target="_blank" href="https://github.com/ASETML/PlotThoseLines">
+                        <img src="./images/GitHub_Invertocat_White.png"></img>
+                    </a>
+                </p>
+            </div>
+            <div class="overlay"></div>
         </div>
-        <pendu :step="mistakes"></pendu>
-        <p class="result" v-if="victory">🎇🎆🎉 You WIN 🎉🎆🎇</p>
-        <p class="result" v-if="defeat">😢 You LOSE 😢</p>
-      </div>
+        <div id="spaceInvaders" class="section">
+            <div class="content">
+                <h1>Shoot Me UP</h1>
+                <p>Un space invaders
+                    <a target="_blank" href="https://github.com/ASETML/ShootMeUp">
+                        <img src="./images/GitHub_Invertocat_White.png"></img>
+                    </a>
+                </p>
+            </div>
+            <div class="overlay"></div>
+        </div>
+        <div id="marketing" class="section">
+            <div class="content">
+                <h1>BitRuisseau</h1>
+                <p>Echange de chansons via un broker MQTT
+                    <a target="_blank" href="https://github.com/ASETML/BitRuisseau">
+                        <img src="./images/GitHub_Invertocat_White.png"></img>
+                    </a>
+                </p>
+            </div>
+            <div class="overlay"></div>
+        </div>
+        <div id="marketing" class="section">
+            <div class="content">
+                <h1>Snake</h1>
+                <p>Un snake en javascript
+                    <a target="_blank" href="https://github.com/ASETML/P_Bulles">
+                        <img src="./images/GitHub_Invertocat_White.png"></img>
+                    </a>
+                </p>
+            </div>
+            <div class="overlay"></div>
+        </div>
+        <div id="about" class="section">
+            <div class="content">
+                <h1>A propos</h1>
+                <p>
+                    <a target="_blank" href="https://www.linkedin.com/in/alban-segalen/">
+                        <img src="./images/LinkedIn_icon.png">
+                    </a>
+                    
+                    <a target="_blank" href="https://github.com/ASETML/">
+                        <img src="./images/GitHub_Invertocat_White.png"></img>
+                    </a>
+                </p>
+            </div>
+            <div class="overlay"></div>
+        </div>
     </div>
+</body>
 
-    <!-- Script principal -->
-    <script src="./main.js"></script>
-
-    <!-- Composant pendu -->
-    <script src="./components/pendu.js"></script>
-
-    <!-- Mount App -->
-    <script>
-      const mountedApp = app.mount("#app");
-    </script>
-  </body>
 </html>

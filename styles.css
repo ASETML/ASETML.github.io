@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  transition: flex .4s ease;
+  position: relative;
+}
+
+.section .overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: background-color .8s ease;
+}
+
+.section .content {
+  z-index: 2;
+}
+
+.section:hover {
+  flex: 2;
+}
+
+.section:hover .overlay {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+#ptl {
+  background-image: url(./images/ptl.jpg);
+}
+
+#spaceInvaders {
+  background-image: url(./images/spaceInvaders.jpg);
+}
+
+#advertising {
+  background-image: url(https://images.unsplash.com/photo-1517799094725-e3453440724e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=353f3663a9fae75773d2942aeb37c2c8&auto=format&fit=crop&w=500&q=60);
+}
+
+.section .content p {
+    opacity: 0;        /* Initially hide the text */
+    transition: opacity 0.4s ease; /* Smooth transition effect */
+    position: absolute; /* Position it absolutely for overlay */
+    z-index: 3;        /* Ensure it's above the overlay */
+}
+
+.section:hover .content p {
+    opacity: 1;        /* Make the text visible on hover */
+}
+
+.section .content a {
+    display: block;
+}
+
+.section .content a img {
+    display: block;
+    opacity: 0;        /* Initially hide the text */
+    transition: opacity 0.4s ease; /* Smooth transition effect */
+    z-index: 3;        /* Ensure it's above the overlay */
+    width: 2.5em;
+}
+
+.section:hover .content a img {
+    opacity: 1;        /* Make the text visible on hover */
+}
+
+img {
+    margin-top: 0.5em;
+}
